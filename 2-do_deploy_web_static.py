@@ -8,7 +8,22 @@ using the function do_deploy:
 
 from fabric.api import put, run, env
 import os
+from datetime import datetime
+from fabric.api import local
 env.hosts = ['54.237.33.154', '3.85.1.156']
+
+
+def do_pack():
+    """This function generates a tgz archive"""
+    try:
+        date = datetime.now().strftime('%Y%m%d%H%M%S')
+        if not os.path.isdir("versions"):
+            local("mkdir -p versions")
+        file_name = f"versions/web_static_{date}.tgz"
+        local(f"tar -cvzf {file_name} web_static")
+        return file_name
+    except Exceptio as e:
+        return None
 
 
 def do_deploy(archive_path):
