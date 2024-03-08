@@ -7,13 +7,13 @@ using the function do_deploy:
 
 
 from fabric.api import put, run, env
-from os.path import exists
+import os
 env.hosts = ['54.237.33.154', '3.85.1.156']
 
 
-def do_deploy():
+def do_deploy(archive_path):
     """distributes an archive to the web server"""
-    if not exists(archive_path):
+    if not os.path.exists(archive_path):
         return False
     try:
         file_n = archive_path.split("/")[-1]
