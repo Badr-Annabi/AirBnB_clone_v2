@@ -19,9 +19,6 @@ def do_pack():
         return file_name
     except Exceptio as e:
         return None
-from fabric.api import put, run, env
-import os
-env.hosts = ['54.237.33.154', '3.85.1.156']
 
 
 def do_deploy(archive_path):
@@ -43,6 +40,7 @@ def do_deploy(archive_path):
         return True
     except Exception as e:
         return False
+
 
 def deploy():
     """
