@@ -21,10 +21,11 @@ class State(BaseModel, Base):
             """
             Getter method to return Cities that are linked to States
             """
+            from models import storage
             city_objs = []
-            for city in models.storage.all(City).values():
+            for city in storage.all(City).values():
                 if city.state_id == self.id:
-                    city_obj.append(city)
+                    city_objs.append(city)
             return city_objs
     """
         @property
