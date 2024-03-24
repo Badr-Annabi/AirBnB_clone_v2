@@ -27,11 +27,3 @@ class State(BaseModel, Base):
                 if city.state_id == self.id:
                     city_objs.append(city)
             return city_objs
-    """
-        @property
-        def cities(self):
-        Session = sessionmaker(bind=Base.metadata.bind)
-        with Session() as session:
-            cities = session.query(City).filter(City.state_id == self.id).all()
-        return cities
-    """
