@@ -14,10 +14,17 @@ class State(BaseModel, Base):
     name = Column(String(128), nullable=False)
     cities = relationship(
             "City", cascade="all, delete-orphan", backref="state")
-    if not os.getenv('HBNB_TYPE_STORAGE') == "db":
+    type_storage = os.getenv("HBNB_TYPE_STORAGE")
+    if type_storage != 'db':
+
         @property
         def cities(self):
+            """
+            Getter method to return Cities that are linked to States
+            """
             from models import storage
-            cities_list = [city for _, city in storage.all(City).items()
-                           if city.state_id == self.id]
-            return cities_list
+            city_objs = []
+            for city in storage.all(City).values():
+                if city.state_id == self.id:
+                    city_objs.append(city)
+            return city_objs
