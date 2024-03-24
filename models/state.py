@@ -16,6 +16,7 @@ class State(BaseModel, Base):
             "City", cascade="all, delete-orphan", backref="state")
     type_storage = os.getenv("HBNB_TYPE_STORAGE")
     if type_storage != 'db':
+
         @property
         def cities(self):
             """
