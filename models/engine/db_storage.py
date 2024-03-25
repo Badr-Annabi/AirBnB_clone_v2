@@ -47,10 +47,10 @@ class DBStorage:
                 objs = self.__session.query(eval(clas))
         for obj in objs:
             key = f"{type(obj).__name__}.{obj.id}"
-            try:
-                del (obj._sa_instance_state)
-            except KeyError:
-                pass
+            # try:
+            #     del (obj._sa_instance_state)
+            # except KeyError:
+            #     pass
             dictionary[key] = obj
         return dictionary
 
