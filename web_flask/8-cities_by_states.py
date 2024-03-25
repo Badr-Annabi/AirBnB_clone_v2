@@ -71,7 +71,6 @@ def cities_by_states():
     """ Display a list of all cities of a certain state """
     states = storage.all(State).values()
     sorted_states = sorted(states, key=lambda state: state.name)
-    print(sorted_states[0].__dict__)
     return render_template('8-cities_by_states.html', states=sorted_states)
 
 
